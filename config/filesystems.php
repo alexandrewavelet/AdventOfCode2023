@@ -56,6 +56,10 @@ return [
             'throw' => false,
         ],
 
+        'days' => [
+            'driver' => 'local',
+            'root' => storage_path('days'),
+        ],
     ],
 
     /*
