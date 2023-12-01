@@ -26,9 +26,9 @@ abstract class Day
         }
     }
 
-    abstract public function firstPuzzle(): string;
+    abstract public function firstPuzzle(): mixed;
 
-    abstract public function secondPuzzle(): string;
+    abstract public function secondPuzzle(): mixed;
 
     protected function getSplitDelimiterForDataset(): string
     {
