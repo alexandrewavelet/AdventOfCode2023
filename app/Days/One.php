@@ -2,6 +2,8 @@
 
 namespace App\Days;
 
+use NumberFormatter;
+
 class One extends Day
 {
     public string $title = 'Trebuchet?!';
@@ -19,8 +21,27 @@ class One extends Day
         });
     }
 
-    public function secondPuzzle(): string
+    public function secondPuzzle(): int
     {
-        return 'TBD';
+        $formatter = new NumberFormatter('en', NumberFormatter::SPELLOUT);
+
+        return (int)$this->dataset
+            ->sum(function ($value) use ($formatter) {
+                $digits = [];
+                preg_match(
+                    "/(?'firstDigit'\d|one|two|three|four|five|six|seven|eight|nine)(.*(?'lastDigit'(?&firstDigit)))?/",
+                    $value,
+                    $digits,
+                    flags: PREG_UNMATCHED_AS_NULL
+                );
+
+                $tens = $formatter->parse($digits['firstDigit'], NumberFormatter::TYPE_INT32);
+                $units = $formatter->parse(
+                    $digits['lastDigit'] ?? $digits['firstDigit'],
+                    NumberFormatter::TYPE_INT32
+                );
+
+                return $tens * 10 + $units;
+            });
     }
 }

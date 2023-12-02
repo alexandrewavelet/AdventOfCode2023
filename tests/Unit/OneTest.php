@@ -11,7 +11,7 @@ class OneTest extends TestCase
     /**
      * @test
      */
-    public function it_finds_sum_of_all_calibrations(): void
+    public function it_finds_calibration(): void
     {
         $day = new One(new Collection([
             '1abc2',
@@ -21,5 +21,24 @@ class OneTest extends TestCase
         ]));
 
         $this->assertSame(142, $day->firstPuzzle());
+    }
+
+    /**
+     * @test
+     */
+    public function it_finds_calibration_with_lettered_digits(): void
+    {
+        $day = new One(new Collection([
+            'two1nine',
+            'eightwothree',
+            'abcone2threexyz',
+            'xtwone3four',
+            '4nineeightseven2',
+            'zoneight234',
+            '7pqrstsixteen',
+            'ntxmgvkm9',
+        ]));
+
+        $this->assertSame(380, $day->secondPuzzle());
     }
 }
