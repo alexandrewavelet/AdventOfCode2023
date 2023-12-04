@@ -32,8 +32,21 @@ class ThreeTest extends TestCase
     /**
      * @test
      */
-    public function it_xxx(): void
+    public function it_sums_gear_ratios(): void
     {
-        $this->markTestSkipped();
+        $day = new Three(new Collection([
+            '467..114..',
+            '...*......',
+            '..35..633.',
+            '......#...',
+            '617*......',
+            '.....+.58.',
+            '..592.....',
+            '......755.',
+            '...$.*....',
+            '.664.598..',
+        ]));
+
+        $this->assertSame(467835, $day->secondPuzzle());
     }
 }
